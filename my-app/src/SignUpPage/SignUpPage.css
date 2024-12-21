@@ -1,0 +1,16 @@
+.page-content-signup {
+    min-height: 100vh;
+    text-align: center;
+    background: linear-gradient(to bottom, #ffffff, #196ec9);
+}
+
+.action-button-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.action-button-container-signup {
+    display: flex;
+    flex-direction: row;
+}
