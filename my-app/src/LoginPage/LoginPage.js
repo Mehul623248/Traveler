@@ -27,12 +27,11 @@ function LoginPage({ onPageChange }) {
             axios.post(url + `/login`, {username, password})
             .then((response) => {
                 if(response.data?.login_status === true){
-                    navigate('/personal_dashboard');
+                    navigate('/travelplan_page');
                     console.log("Login Successful");
                     localStorage.setItem('Username', username);
                     localStorage.setItem('LoggedIn', true);
-                    localStorage.setItem('user_sessions', JSON.stringify(response.data?.user_sessions));
-                    localStorage.setItem('player_stats', JSON.stringify(response.data?.player_stats));
+                  
                 }
                 else{
                     setErrorMessage('Username or Password is incorrect!')
@@ -74,7 +73,7 @@ function LoginPage({ onPageChange }) {
                   />
                   <div className="action-button-container">
                     <Button
-                       // onClick={handleLoginClick}
+                        onClick={handleLoginClick}
                         variant = 'outlined'
                         label = 'Login'
                         style = {{

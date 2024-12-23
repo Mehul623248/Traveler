@@ -26,7 +26,7 @@ function SignUpPage({ onPageChange }) {
             .then((response) => {
                 console.log(response)
                 if(response.data?.signup_status === true){
-                    navigate('/personal_dashboard')
+                    navigate('/travelplan_page')
                     console.log("Signup Successful")
                     localStorage.setItem('LoggedIn', true)
                     localStorage.setItem('Username', username)
@@ -110,7 +110,7 @@ function SignUpPage({ onPageChange }) {
                             width: '200px',
                             height: '30px',
                             color: 'black'
-                }}>Register as Player</Button>
+                }}>Register as User</Button>
                   <Typography color="error">{errorMessage}</Typography>
                   <div className='action-button-login'>
                       <p>Already have an account?</p>
