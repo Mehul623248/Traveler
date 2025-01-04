@@ -5,3 +5,6 @@
     text-align: center;
     background: #02a5fd;
 }
+.city{
+    display: inline-block;
+}

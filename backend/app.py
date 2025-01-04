@@ -56,7 +56,7 @@ def signup():
         output = add_user_to_database(data['firstName'], data['lastName'], data['email'], data['username'],
                                       encrypted_password)
         if output == 'Success':
-            create_personal_sessions(data['username'])
+            # create_personal_sessions(data['username'])
             return jsonify({
                 'signup_status': True,
                 'username': data['username']
