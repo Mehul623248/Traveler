@@ -8,6 +8,8 @@ import {
 import LoginPage from "./LoginPage/LoginPage";
 import SignUpPage from "./SignUpPage/SignUpPage";
 import TravelPlanPage from "./TravelPlanPage/TravelPlanPage";
+import MapPage from "./MapPage/MapPage";
+
 
 const RedirectSite = () => {
   window.location.href = "route_map.html";
@@ -23,7 +25,8 @@ function App() {
           <Route path="/login_page" element={<LoginPage/>} />
           <Route path="/signup_page" element={<SignUpPage/>} />
           <Route path="/travelplan_page" element={<TravelPlanPage/>} />
-          
+          <Route path="/map_page" element={<MapPage/>} />
+
       </Routes>
     </Router>
   );

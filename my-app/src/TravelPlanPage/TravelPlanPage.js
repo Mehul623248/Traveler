@@ -32,12 +32,50 @@ function TravelPlanPage({ onPageChange }) {
 
     //for country-city picker
     const [countryid, setCountryid] = useState(0);
+    const [countryName, setCountryName] = useState("");
     const [stateid, setstateid] = useState(0);
+    const [stateName,setStateName] = useState("");
+    const [cityName,setCityName] = useState("");
 
     const [countryid2, setCountryid2] = useState(0);
     const [stateid2, setstateid2] = useState(0);
+    const [countryName2, setCountryName2] = useState("");
+    const [stateName2,setStateName2] = useState("");
+    const [cityName2,setCityName2] = useState("");
 
-
+    
+    //for sending data
+    const [errorMessage, setErrorMessage] = useState('');
+    
+    const url = "http://localhost:5000";
+    const handlePathClick = () => {
+         if(countryName === '' || countryName2 === ''){
+             setErrorMessage('Country container cannot be empty!')
+         }
+         else if(stateName === '' || stateName2 === '')
+         {
+            setErrorMessage('State container cannot be empty!')
+         }
+        else if(cityName === '' || cityName2 === ''){
+             setErrorMessage('City container cannot be empty!')
+         }
+        else{
+          axios.post(url + `/directions`, {countryName, stateName, cityName, countryName2, stateName2, cityName2})
+        //     .then((response) => {
+        //         if(response.data?.login_status === true){
+        //             navigate('/travelplan_page');
+        //             console.log("Login Successful");
+        //             localStorage.setItem('Username', username);
+        //             localStorage.setItem('LoggedIn', true);
+                  
+        //         }
+        //         else{
+        //             setErrorMessage('Username or Password is incorrect!')
+        //             console.log("Login Failed")
+        //         }
+        //     })
+        }
+    }
     //for transport options
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -93,6 +131,7 @@ function TravelPlanPage({ onPageChange }) {
                     <CountrySelect
                         onChange={(e) => {
                         setCountryid(e.id);
+                        setCountryName(e.name);
                         }}
                         placeHolder="Select Country"
                      
@@ -103,6 +142,7 @@ function TravelPlanPage({ onPageChange }) {
                         countryid={countryid}
                         onChange={(e) => {
                         setstateid(e.id);
+                        setStateName(e.name);
                         }}
                         placeHolder="Select State"
                     />
@@ -111,7 +151,7 @@ function TravelPlanPage({ onPageChange }) {
                         countryid={countryid}
                         stateid={stateid}
                         onChange={(e) => {
-                        console.log(e);
+                        setCityName(e.name);
                         }}
                         placeHolder="Select City"
                     />
@@ -127,6 +167,8 @@ function TravelPlanPage({ onPageChange }) {
                     <CountrySelect
                         onChange={(e) => {
                         setCountryid2(e.id);
+                        setCountryName2(e.name);
+
                         }}
                         placeHolder="Select Country"
                   
@@ -137,6 +179,8 @@ function TravelPlanPage({ onPageChange }) {
                         countryid={countryid2}
                         onChange={(e) => {
                         setstateid2(e.id);
+                        setStateName2(e.name);
+
                         }}
                         placeHolder="Select State"
                     />
@@ -146,6 +190,8 @@ function TravelPlanPage({ onPageChange }) {
                         stateid={stateid2}
                         onChange={(e) => {
                         console.log(e);
+                        setCityName2(e.name);
+
                         }}
                         placeHolder="Select City"
                     />
@@ -213,8 +259,10 @@ function TravelPlanPage({ onPageChange }) {
                          }}
                >plan lodging</Button>
               
-          <a href="/route_map.html">    <Button
-                       // onClick={handleLoginClick}
+          {/* <a href="/route_map.html"></a>  */}
+           <Link to="/map_page">
+           <Button
+                        onClick={handlePathClick}
                         variant = 'outlined'
                         label = 'see path'
                         style = {{
@@ -224,7 +272,9 @@ function TravelPlanPage({ onPageChange }) {
                           
                             color: 'black'
                          }}
-               >See Path</Button></a>
+               >See Path</Button>
+           </Link>
+            
             
        
       

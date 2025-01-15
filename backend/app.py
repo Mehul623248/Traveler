@@ -3,7 +3,7 @@ from flask_cors import CORS
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import cipher
-
+from testTransport import routes
 import cmath
 
 uri = ("mongodb+srv://mehulmurali:traveler1234@cluster0.uctbu.mongodb.net/")
@@ -75,6 +75,15 @@ def signup():
         return jsonify({
             'Error': 'ill-formed request'
         })
+
+@app.route('/directions', methods=['POST'])
+def directions():
+    data = request.get_json()
+    source= data['cityName'] + ", " +data['stateName']+ ", " + data['countryName']
+    dest= data['cityName2'] + ", " +data['stateName2']+ ", " + data['countryName2'] 
+    routes(source, dest)
+     
+    return 0
 
 def check_login_credentials(username: str, password: str) -> bool:
     collection = db['Users']  # retrieve all users from database
